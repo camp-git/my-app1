@@ -30,6 +30,7 @@ pipeline
                         ssh ec2-user@172.31.9.31 /opt/tomcat8/bin/startup.sh
                     """
                     }                
-            }
+                }
+         }
     }
 }
