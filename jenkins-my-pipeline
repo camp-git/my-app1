@@ -18,6 +18,15 @@ pipeline
                 sh "mv target/*.war target/my-app.war"
             }
         }
+        stage("Deploy war file to s3")
+         {
+            steps{
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh "aws s3 ls"
+                    sh "aws s3 cp target/my-app.war s3://jenkinspipelinerollback"
+                    }
+                  }
+         }
         stage("Deploy to tomcat")
         {
             steps{
@@ -32,14 +41,6 @@ pipeline
                     }                
                 }
          }
-         stage("Deploy war file to s3")
-         {
-            steps{
-                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    sh "aws s3 ls"
-                    sh "aws s3 cp target/my-app.war s3://jenkinspipelinerollback"
-                    }
-                  }
-         }
+         
     }
 }
