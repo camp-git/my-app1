@@ -14,13 +14,6 @@ pipeline
                 git 'https://github.com/ganjivasu/my-app'
             }
         }
-        stage("Maven Build")
-        {
-            steps{
-                sh "mvn clean package"
-                sh "mv target/*.war target/my-app.war"
-            }
-        }
         stage('SonarQube Analysis') {
             
             steps{
@@ -34,6 +27,14 @@ pipeline
                 }
         
             }
+        stage("Maven Build")
+        {
+            steps{
+                sh "mvn clean package"
+                sh "mv target/*.war target/my-app.war"
+            }
+        }
+        
         stage("Deploy war file to s3")
          {
             steps{
