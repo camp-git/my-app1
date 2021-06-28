@@ -22,6 +22,26 @@ pipeline
                 sh "mv target/*.war target/my-app.war"
             }
         }
+        stage("Upload war file to nexus")
+        {
+            steps{                
+                nexusArtifactUploader artifacts: [
+                    [
+                        artifactId: 'myweb',
+                        classifier: '',
+                        file: 'target/my-app-0.0.15.war',
+                        type: 'war'
+                    ]
+                ],
+                credentialsId: 'nexus3',
+                groupId: 'in.javahome',
+                nexusUrl: '172.31.43.91',
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                repository: 'uploadtonexus',
+                version: '0.0.15'
+            }
+        }
         stage('SonarQube Analysis') {
             
             steps{
