@@ -104,7 +104,7 @@ pipeline
             deleteDir() /* clean up our workspace */
         }
         success {
-            slackSend (color: '#00FF00', message: "currentBuild.displayName + Build succeeded!", channel: "#tx_aws")
+            slackSend (color: '#00FF00', message: currentBuild.displayName + "Build succeeded!", channel: "#tx_aws")
         }
         unstable {
             slackSend (color: '#FFFE89', message: "Build was unstable!", channel: "#tx_aws")
