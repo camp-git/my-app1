@@ -114,16 +114,16 @@ pipeline
             deleteDir() /* clean up our workspace */
         }
         success {
-            slackSend 'I succeeded!'
+            slackSend (color: '#00FF00', message: "I succeeded!")
         }
         unstable {
-            slackSend 'I am unstable :/'
+            slackSend (color: '#00FF00', message: "I am unstable :/")
         }
         failure {
-            slackSend 'I failed :('
+            slackSend (color: '#00FF00', message: "czxvdxg")
         }
         changed {
-            slackSend 'Things were different before...'
+            slackSend (color: '#00FF00', message: "fvdxbdxb")
         }
     }
                     
