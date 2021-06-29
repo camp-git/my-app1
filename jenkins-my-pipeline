@@ -13,10 +13,8 @@ pipeline
         stage("Git Checkout"){
             steps{
                 
-                if(git 'https://github.com/ganjivasu/my-app')
-                {
-                    slackSend (color: '#00FF00', message: "SUCCESSFUL")
-                }
+                git 'https://github.com/ganjivasu/my-app'
+                
                 }
             }
         
@@ -98,9 +96,17 @@ pipeline
                     }                
                 }
          }         
-                    
+                   
     }
-    
+    post {
+                        success {
+                            slackSend (color: '#00FF00', message: "SUCCESSFUL")
+                            }
+                        failure {
+                            slackSend (color: '#FF0000', message: "FAILED")
+                    }
+                    }
+                    
     }
     
 
