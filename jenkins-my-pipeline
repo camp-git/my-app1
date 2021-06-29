@@ -7,11 +7,14 @@ pipeline
     environment{
         PATH = "/opt/apache-maven-3.8.1/bin:$PATH"
         scannerHome = tool 'sonar_scanner'
+        
     }
     stages{
         stage("Git Checkout"){
             steps{
                 git 'https://github.com/ganjivasu/my-app'
+                
+                slackSend (color: '#FFFF00', message: "Started")
             }
         }
         stage("Slack notifications 1")
