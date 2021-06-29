@@ -83,13 +83,13 @@ pipeline
                     }                
                 }
          }
-         stage("Slack notifications 1")
+         stage("Slack notifications")
             {
                     steps{
                     slackSend baseUrl: 'https://hooks.slack.com/services/',
                     channel: '#tx_aws',
                     color: 'good',
-                    message: 'Pipeline success',
+                    message: 'Jenkins Pipeline Triggered',
                     teamDomain: 'testingxpertsaws',
                     tokenCredentialId: 'tx_aws',
                     username: 'jenkins'
