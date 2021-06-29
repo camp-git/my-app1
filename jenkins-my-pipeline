@@ -16,30 +16,8 @@ pipeline
                 
                 git 'https://github.com/ganjivasu/my-app'
                 
-                }
-                post {
-                        success {
-                            slackSend (color: '#00FF00', message: "GIT SUCCESSFUL")
-                            }
-                        failure {
-                            slackSend (color: '#FF0000', message: "GIT FAILED")
-                    }
-                    }
-            }
-        
-        stage("Slack notifications 1")
-            {
-                    steps{
-                    slackSend baseUrl: 'https://hooks.slack.com/services/',
-                    channel: '#tx_aws',
-                    color: 'good',
-                    message: 'Git success',
-                    teamDomain: 'testingxpertsaws',
-                    tokenCredentialId: 'tx_aws',
-                    username: 'jenkins'
-                    }
-             }
-        
+                }                
+        }                
         stage("Maven Build")
         {
             steps{
@@ -114,20 +92,19 @@ pipeline
             deleteDir() /* clean up our workspace */
         }
         success {
-            slackSend (color: '#00FF00', message: "I succeeded!")
+            slackSend (color: '#00FF00', message: "Build succeeded!")
         }
         unstable {
-            slackSend (color: '#00FF00', message: "I am unstable :/")
+            slackSend (color: '#FFFE89', message: "Build was unstable!")
         }
         failure {
-            slackSend (color: '#00FF00', message: "czxvdxg")
+            slackSend (color: '#FF0000', message: "Build Failed")
         }
         changed {
-            slackSend (color: '#00FF00', message: "fvdxbdxb")
+            slackSend (color: '#D4DADF', message: "Changed")
         }
     }
-                    
-    }
+}
     
 
 
