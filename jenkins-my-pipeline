@@ -14,21 +14,25 @@ pipeline
                 git 'https://github.com/ganjivasu/my-app'
             }
         }
+        stage("Slack notifications")
+            {
+                    steps{
+                    slackSend baseUrl: 'https://hooks.slack.com/services/',
+                    channel: '#tx_aws',
+                    color: 'good',
+                    message: 'Git success',
+                    teamDomain: 'testingxpertsaws',
+                    tokenCredentialId: 'tx_aws',
+                    username: 'jenkins'
+                    }
+             }
         
         stage("Maven Build")
         {
             steps{
                 sh "mvn clean package"
                 sh "mv target/*.war target/my-app.war"
-                sh '''
-                    slackSend baseUrl: 'https://hooks.slack.com/services/',
-                    channel: '#tx_aws',
-                    color: 'good',
-                    message: 'Maven build',
-                    teamDomain: 'testingxpertsaws',
-                    tokenCredentialId: 'tx_aws',
-                    username: 'jenkins'
-                 '''
+                
             }
             
         }
