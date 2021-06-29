@@ -92,16 +92,16 @@ pipeline
             deleteDir() /* clean up our workspace */
         }
         success {
-            slackSend (color: '#00FF00', message: "Build succeeded!", channel: #tx_aws)
+            slackSend (color: '#00FF00', message: "Build succeeded!", channel: "#tx_aws")
         }
         unstable {
-            slackSend (color: '#FFFE89', message: "Build was unstable!", channel: #tx_aws)
+            slackSend (color: '#FFFE89', message: "Build was unstable!", channel: "#tx_aws")
         }
         failure {
-            slackSend (color: '#FF0000', message: "Build Failed", channel: #tx_aws)
+            slackSend (color: '#FF0000', message: "Build Failed", channel: "#tx_aws")
         }
         changed {
-            slackSend (color: '#D4DADF', message: "Changed", channel: #tx_aws)
+            slackSend (color: '#D4DADF', message: "Changed", channel: "#tx_aws")
         }
     }
 }
