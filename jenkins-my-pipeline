@@ -13,15 +13,15 @@ pipeline
         stage("Git Checkout"){
             steps{
                 
-                git 'https://github.com/ganjivasu/my-app'
+                git 'https://github.com/ganjivasu/my-app
                 
                 }
                 post {
                         success {
-                            slackSend (color: '#00FF00', message: "Build SUCCESSFUL")
+                            slackSend (color: '#00FF00', message: "GIT SUCCESSFUL")
                             }
                         failure {
-                            slackSend (color: '#FF0000', message: "Build FAILED")
+                            slackSend (color: '#FF0000', message: "GIT FAILED")
                     }
                     }
             }
