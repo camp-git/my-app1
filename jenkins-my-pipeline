@@ -78,6 +78,18 @@ pipeline
                     }                
                 }
          }
+         stage("Slack notifications")
+            {
+                steps{
+                    slackSend baseUrl: 'https://hooks.slack.com/services/',
+                    channel: '#tx_aws',
+                    color: 'good',
+                    message: 'Hello World!',
+                    teamDomain: 'testingxpertsaws',
+                    tokenCredentialId: 'tx_aws',
+                    username: 'jenkins'
+                    }
+             }
          
     }
 }
