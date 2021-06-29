@@ -99,7 +99,8 @@ pipeline
     }
     post { 
         always { 
-            slacksend 'I will always say Hello again!'
+            slackNotifier(currentBuild.currentResult)
+            cleanWs()
         }
     }
     }
