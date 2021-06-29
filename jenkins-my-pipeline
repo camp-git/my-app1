@@ -20,8 +20,7 @@ pipeline
             steps{
                 sh "mvn clean package"
                 sh "mv target/*.war target/my-app.war"
-            }
-            steps{
+                """
                     slackSend baseUrl: 'https://hooks.slack.com/services/',
                     channel: '#tx_aws',
                     color: 'good',
@@ -29,7 +28,9 @@ pipeline
                     teamDomain: 'testingxpertsaws',
                     tokenCredentialId: 'tx_aws',
                     username: 'jenkins'
-                    }
+                 """
+            }
+            
         }
         stage("Upload war file to nexus")
         {
