@@ -9,11 +9,12 @@ pipeline
         scannerHome = tool 'sonar_scanner'
         
     }
+    
     stages{
         stage("Git Checkout"){
             steps{
                 
-                git 'https://github.com/ganjivasu/my-app
+                git 'https://github.com/ganjivasu/my-app'
                 
                 }
                 post {
@@ -106,14 +107,25 @@ pipeline
          }         
                    
     }
+    
     post {
-                        success {
-                            slackSend (color: '#00FF00', message: "Build SUCCESSFUL")
-                            }
-                        failure {
-                            slackSend (color: '#FF0000', message: "Build FAILED")
-                    }
-                    }
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
                     
     }
     
