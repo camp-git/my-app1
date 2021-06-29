@@ -95,20 +95,27 @@ pipeline
                     }                
                 }
          }         
-                    stage("Slack notifications"){
-                        steps{
-                        
-                    post {
-                        success {
-                            slackSend (color: '#00FF00', message: "SUCCESSFUL")
-                            }
-                        failure {
-                            slackSend (color: '#FF0000', message: "FAILED")
-                    }
-                    }
-                    }
-                 }
-             }
-         
+                    
     }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() / clean up our workspace /
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
+}
+         
+    
 
