@@ -14,7 +14,7 @@ pipeline
                 git 'https://github.com/ganjivasu/my-app'
             }
         }
-        stage("Slack notifications")
+        stage("Slack notifications 1")
             {
                     steps{
                     slackSend baseUrl: 'https://hooks.slack.com/services/',
