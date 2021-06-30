@@ -57,19 +57,7 @@ pipeline
                     }
                   }
          }
-         stage('SonarQube Analysis') {
-            
-            steps{
-                withSonarQubeEnv('SonarQube') { 
-                    sh """
-                        mvn sonar:sonar \
-                        -Dsonar.host.url=http://35.154.47.14:9000 \
-                        -Dsonar.login=4206e15f03e44faa978f57cfa3c0e51ba12817eb
-                    """
-                }
-                }
         
-            }
 
 
         stage("Deploy to tomcat")
