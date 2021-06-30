@@ -47,24 +47,25 @@
 		    <url>http://172.31.15.236:8081/repository/maven-releases/</url>
 		</repository>
   	</distributionManagement>
-	<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>3.1.0</version>
-		<resources>    
+	
+<build>
+	<resources>    
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
 		    </resources>
-    <configuration>
-        <encoding>UTF-8</encoding>
-    </configuration>
-<build>
-	
     <plugins>
 	    
 </plugin>
+	<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.1.0</version>
+		
+    <configuration>
+        <encoding>UTF-8</encoding>
+    </configuration>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
