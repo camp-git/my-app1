@@ -51,8 +51,7 @@
 <build>
 	<resources>    
             <resource>
-                <directory>Firstpipeline/src/main/resources</directory>
-                <filtering>true</filtering>
+                
             </resource>
 		    </resources>
     <plugins>
@@ -62,7 +61,8 @@
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-resources-plugin</artifactId>
     <version>3.1.0</version>
-		
+		<directory>src/main/resources</directory>
+                <filtering>true</filtering>
     <configuration>
         <encoding>UTF-8</encoding>
     </configuration>
